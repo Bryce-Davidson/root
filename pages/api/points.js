@@ -1,21 +1,24 @@
-import { connectMongo } from "utils/db";
+import connectDB from "utils/connectDb";
 import Test from "models/test-model";
 /**
  *
  * @param {import('next').NextApiRequest} req
  * @param {import('next').NextApiResponse} res
  */
-export default async function handler(req, res) {
-  console.log("Connecting to mongo");
-  await connectMongo();
-  console.log("Connected to mongo");
-
-  const test = await Test.create({
-    name: "Bryce",
-    email: "lifebryce@icloud.com",
-  });
-
-  res.status(200).json({
-    test,
-  });
+async function handler(req, res) {
+  try {
+    const test = await Test.create({
+      name: "Bryce",
+      email: "something else",
+    });
+    return res.status(500).json({
+      test,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      error: "Repeat key",
+    });
+  }
 }
+
+export default connectDB(handler);
