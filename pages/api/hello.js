@@ -1,5 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+  fetch("https://mockend.com/Bryce-Davidson/geo-mock-api/points", {})
+    .then((response) => response.json())
+    .then((json) => res.status(200).json(json));
 }
