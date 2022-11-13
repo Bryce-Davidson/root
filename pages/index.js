@@ -1,4 +1,5 @@
 import mapboxGl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { useRef, useEffect } from "react";
 
 export default function Home() {
@@ -14,12 +15,6 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <head>
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css"
-          rel="stylesheet"
-        />
-      </head>
       <main>
         <div
           className="map-container"
