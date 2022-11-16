@@ -12,11 +12,12 @@
   "dependencies": {
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
-    "mapbox-gl": "^2.10.0",
+    "mapbox-gl": "^2.11.0",
     "mongoose": "^6.7.2",
     "next": "13.0.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-map-gl": "^7.0.19"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

@@ -1,27 +1,26 @@
-import mapboxGl from "mapbox-gl";
+import * as React from "react";
+import Head from "next/head";
+import Map, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useRef, useEffect } from "react";
+
+const MAPBOX_TOKEN =
+  "pk.eyJ1IjoiYnJ5Y3ljbGUiLCJhIjoiY2t5emhpcDZ1MG0yeDJ2bHV5Ymo3bzk4ZCJ9.K8F0fGovviZwfOYLOnbKhg";
 
 export default function Home() {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-  useEffect(() => {
-    mapboxGl.accessToken =
-      "pk.eyJ1IjoiYnJ5Y3ljbGUiLCJhIjoiY2t5emhpcDZ1MG0yeDJ2bHV5Ymo3bzk4ZCJ9.K8F0fGovviZwfOYLOnbKhg";
-    map.current = new mapboxGl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/light-v10",
-    });
-  }, []);
   return (
     <div>
-      <main>
-        <div
-          className="map-container"
-          ref={mapContainer}
-          style={{ height: 500, width: 500 }}
-        />
-      </main>
+      <Map
+        initialViewState={{
+          latitude: 48.427589,
+          longitude: -123.3327,
+          zoom: 14,
+        }}
+        style={{ width: 800, height: 600 }}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapboxAccessToken={MAPBOX_TOKEN}
+      >
+        <Marker longitude={-123.3327} latitude={48.427589} color="red" />
+      </Map>
     </div>
   );
 }
