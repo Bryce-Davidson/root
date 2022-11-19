@@ -1,4 +1,4 @@
-import connectDB from "utils/connectDb";
+import connectDB from "utils/database/connectDb";
 import Test from "models/test-model";
 /**
  *
