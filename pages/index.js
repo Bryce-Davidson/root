@@ -1,33 +1,9 @@
 import * as React from "react";
-import Map, { Marker, FullscreenControl, Source, Layer } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-const matchClient = require("@mapbox/mapbox-sdk/services/map-matching.js");
-const MAPBOX_TOKEN =
-  "pk.eyJ1IjoiYnJ5Y3ljbGUiLCJhIjoiY2t5emhpcDZ1MG0yeDJ2bHV5Ymo3bzk4ZCJ9.K8F0fGovviZwfOYLOnbKhg";
-const match = matchClient({ accessToken: MAPBOX_TOKEN });
-
-function createFeature(mbxGeometry) {
-  return {
-    type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        properties: {},
-        geometry: mbxGeometry,
-      },
-    ],
-  };
-}
-
-function createWaypoints(sample) {
-  return sample.map((coord) => {
-    let lon = coord[0];
-    let lat = coord[1];
-    return {
-      coordinates: [lon, lat],
-    };
-  });
-}
+import Map, { Marker, FullscreenControl, Source, Layer } from "react-map-gl";
+import { createWaypoints, createFeature } from "utils/mapbox/mapMatching";
+import { MAPBOX_PUBLIC_TOKEN } from "utils/mapbox/tokens";
+import { mbxMatchClient } from "../utils/mapbox/mapMatching";
 
 const routes = {
   waterFront: [
@@ -42,7 +18,7 @@ const routes = {
 };
 
 export async function getStaticProps() {
-  const res = await match
+  const res = await mbxMatchClient
     .getMatch({
       tidy: true,
       geometries: "geojson",
@@ -82,7 +58,7 @@ export default function Home({ json }) {
         }}
         style={{ width: 800, height: 600 }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
-        mapboxAccessToken={MAPBOX_TOKEN}
+        mapboxAccessToken={MAPBOX_PUBLIC_TOKEN}
       >
         <Marker longitude={-123.3327} latitude={48.427589} color="red" />
         <FullscreenControl />

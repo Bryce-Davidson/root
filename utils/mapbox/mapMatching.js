@@ -1,4 +1,9 @@
-exports.createWaypoints = function (sample) {
+import { MAPBOX_PUBLIC_TOKEN } from "./tokens";
+import client from "@mapbox/mapbox-sdk/services/map-matching.js";
+
+export const mbxMatchClient = client({ accessToken: MAPBOX_PUBLIC_TOKEN });
+
+export function createWaypoints(sample) {
   return sample.map((coord) => {
     let lon = coord[0];
     let lat = coord[1];
@@ -6,9 +11,9 @@ exports.createWaypoints = function (sample) {
       coordinates: [lon, lat],
     };
   });
-};
+}
 
-exports.createFeature = function (mbxGeometry) {
+export function createFeature(mbxGeometry) {
   return {
     type: "FeatureCollection",
     features: [
@@ -19,4 +24,4 @@ exports.createFeature = function (mbxGeometry) {
       },
     ],
   };
-};
+}
