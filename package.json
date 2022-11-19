@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.14.0",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "mapbox-gl": "^2.11.0",
