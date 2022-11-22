@@ -10,4 +10,5 @@ const connectDB = (handler) => async (req, res) => {
   return handler(req, res);
 };
 
+//Test commit
 export default connectDB;
